@@ -1,19 +1,8 @@
 import Button from './button';
-import { sql } from '@vercel/postgres';
-import { unstable_noStore as noStore } from 'next/cache';
+// import { sql } from '@vercel/postgres';
+import { fetchClicks } from './lib/actions'
 
-async function fetchClicks() {
-  noStore()
 
-  try {
-      const result = await sql`SELECT * FROM click_data`
-      return result.rows[0]['click_count']
-  
-    } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch revenue data.');
-  }
-}
 
 export default async function Home() {
   const startingCount = await fetchClicks();
