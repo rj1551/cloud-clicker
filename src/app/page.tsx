@@ -2,7 +2,7 @@ import Button from './button';
 import { sql } from '@vercel/postgres';
 import { unstable_noStore as noStore } from 'next/cache';
 
-export async function fetchClicks() {
+async function fetchClicks() {
   noStore()
 
   try {
