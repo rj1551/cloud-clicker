@@ -1,13 +1,22 @@
-'use client';
+'use client'
  
-import { useState } from 'react';
+import { incrementClick } from './lib/actions'
+import { useState } from 'react'
  
-export default function LikeButton() {
-  const [likes, setLikes] = useState(0);
+export default function Button({ startingCount }) {
+  const [clicks, setClicks] = useState(startingCount)
  
-  function handleClick() {
-    setLikes(likes + 1);
-  }
- 
-  return <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md" onClick={handleClick}>Click Count ({likes})</button>;
+  return (
+    <>
+      <p>Click Count: {clicks}</p>
+      <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md"
+        onClick={async () => {
+          await incrementClick()
+          setClicks(clicks+1)
+        }}
+      >
+        Click
+      </button>
+    </>
+  )
 }
